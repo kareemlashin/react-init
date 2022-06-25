@@ -1,0 +1,43 @@
+@for $var from 1 to 20 {
+    .m-#{$var} {
+        margin: #{$var}px;
+    }
+
+    .mt-#{$var} {
+        margin-top: #{$var}px;
+    }
+
+    .mb-#{$var} {
+        margin-bottom: #{$var}px;
+    }
+
+    .ms-#{$var} {
+        margin-inline-start: #{$var}px;
+    }
+
+    .me-#{$var} {
+        margin-inline-end: #{$var}px;
+    }
+}
+
+@for $var from 1 to 20 {
+    .p-#{$var} {
+        margin: #{$var}px;
+    }
+
+    .pt-#{$var} {
+        padding-top: #{$var}px;
+    }
+
+    .pb-#{$var} {
+        padding-bottom: #{$var}px;
+    }
+
+    .ps-#{$var} {
+        padding-inline-end: #{$var}px;
+    }
+
+    .pe-#{$var} {
+        padding-inline-start: #{$var}px;
+    }
+}

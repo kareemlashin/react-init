@@ -1,0 +1,7 @@
+@function _opacity-color($color, $opacity: 1) {
+    @if $opacity == 1 {
+      @return $color;
+    } @else {
+      @return rgba($color, $opacity);
+    }
+  }

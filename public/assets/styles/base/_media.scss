@@ -1,0 +1,27 @@
+$breakpoints: (
+    "phone":        400px,
+    "phone-wide":   480px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px
+);
+$breakpoints: (
+  'bp-1': 576px,
+  'bp-2': 768px,
+  'bp-3': 992px,
+  'bp-4': 1200px,
+);
+
+// Commonly used expression aliasses
+$md1:      'screen', '>=bp-1';
+$md2:      'screen', '>=bp-2';
+$md3:      'screen', '>=bp-3';
+$md4:      'screen', '>=bp-4';
+$md0-ret2: 'screen', 'retina2x';
+$md1-ret2: 'screen', 'retina2x', '>=bp-1';
+$md2-ret2: 'screen', 'retina2x', '>=bp-2';
+$md3-ret2: 'screen', 'retina2x', '>=bp-3';
+$md4-ret2: 'screen', 'retina2x', '>=bp-4';
