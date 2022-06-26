@@ -2,9 +2,13 @@ import React, { PureComponent } from "react";
 import i18next, { t } from "i18next";
 import { withTranslation } from "react-i18next";
 import { ConfigProvider } from "antd";
-
 import "./index.scss";
 import RouteMain from "../../components/Route/Route";
+import LocaleProvider from "antd/lib/locale-provider";
+
+import ar_EG from "antd/lib/locale/ar_EG";
+import moment from 'moment';
+import localization from 'moment/locale/ar';
 
 
 class Main extends PureComponent {
@@ -47,11 +51,16 @@ class Main extends PureComponent {
           ...this.state,
           dir: "rtl",
         });
+        moment.updateLocale('ar', localization);
+
       } else {
         this.setState({
           ...this.state,
           dir: "ltr",
         });
+        moment.updateLocale('ar', localization);
+
+
       }
     });
 
@@ -88,26 +97,13 @@ class Main extends PureComponent {
   render() {
     return (
       <div className="navbar__page--wrapper">
-        <ConfigProvider direction={i18next.language === "ar" ? "rtl" : "ltr"}>
+         <LocaleProvider locale={i18next.language === "ar" ? ar_EG : null}>
+
+        <ConfigProvider locale={i18next.language === "ar" ? ar_EG : null} direction={i18next.language === "ar" ? "rtl" : "ltr"} >
       
-          {t("w_name")}
-          {(() => {
-            if (i18next.language === "ar") {
-              return (
-                <button onClick={() => this.changeLanguageHandler("en")}>
-                  en
-                </button>
-              );
-            } else {
-              return (
-                <button onClick={() => this.changeLanguageHandler("ar")}>
-                  ar
-                </button>
-              );
-            }
-          })()}
           <RouteMain />
         </ConfigProvider>
+        </LocaleProvider>
       </div>
     );
   }

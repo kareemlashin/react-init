@@ -1,8 +1,29 @@
-import React, { PureComponent } from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
-import Users from '../../components/Users/Users';
-
-class Home extends PureComponent { 
+import React, { Fragment, PureComponent } from "react";
+// import { Button, Checkbox, Form, Input } from "antd";
+// import Users from "../../components/Users/Users";
+import { Badge, Empty, Divider, Rate } from "antd";
+import { Segmented } from "antd";
+import { DatePicker, Space } from "antd";
+import ar_EG from 'antd/lib/locale/ar_EG';
+import en_US from 'antd/lib/locale/en_US';
+import { t } from "i18next";
+const { RangePicker } = DatePicker;
+const colors = [
+  "pink",
+  "red",
+  "yellow",
+  "orange",
+  "cyan",
+  "green",
+  "blue",
+  "purple",
+  "geekblue",
+  "magenta",
+  "volcano",
+  "gold",
+  "lime",
+];
+class Home extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -12,115 +33,105 @@ class Home extends PureComponent {
   }
 
   componentWillMount = () => {
-    console.log('Home will mount');
-  }
+    console.log("Home will mount");
+  };
 
   componentDidMount = () => {
-    console.log('Home mounted');
-  }
+    console.log("Home mounted");
+  };
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('Home will receive props', nextProps);
-  }
+    console.log("Home will receive props", nextProps);
+  };
 
   componentWillUpdate = (nextProps, nextState) => {
-    console.log('Home will update', nextProps, nextState);
-  }
+    console.log("Home will update", nextProps, nextState);
+  };
 
   componentDidUpdate = () => {
-    console.log('Home did update');
-  }
+    console.log("Home did update");
+  };
 
   componentWillUnmount = () => {
-    console.log('Home will unmount');
-  }
-   onFinish = (values) => {
-    console.log('Success:', values);
+    console.log("Home will unmount");
+  };
+  onFinish = (values) => {
+    console.log("Success:", values);
   };
 
-   onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
-  render () {
+  render() {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
     }
     return (
-      <div className="HomeWrapper">
+      <Fragment className="home__wrapper">
+        <Divider orientation="left">Presets</Divider>
+        <Badge count={25} />
+        <Badge
+          className="site-badge-count-109"
+          style={{ backgroundColor: "#52c41a" }}
+        />
+        <>
+        <DatePicker showTime  />
+    <RangePicker
+      showTime={{
+        format: 'HH:mm',
+      }}
+      format="YYYY-MM-DD HH:mm"
+  
+    />
+          <RangePicker  />
+          <RangePicker showTime  />
+          <RangePicker picker="week"/>
+          <RangePicker picker="month" />
+          <RangePicker picker="quarter"  />
+          <RangePicker picker="year" />
+        </>
+
+        <>
+          <Rate allowHalf defaultValue={2.5} />
+        </>
+        <Divider orientation="right">Custom</Divider>
+        <div>
+          <Segmented
+            size="large"
+            options={["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]}
+          />
+          <br />
+          <Segmented
+            options={["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]}
+          />
+          <br />
+          <Segmented
+            size="small"
+            options={["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"]}
+          />
+        </div>
+        <div>
+          <Empty
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            imageStyle={{
+              height: 60,
+            }}
+            description={
+              <span>
+                Customize <a href="#API">Description</a>
+              </span>
+            }
+          ></Empty>
+        </div>
+        {/* 
         <Users>
           <div>
-            <div>
-              ddd
-            </div>
+            <div>ddd</div>
           </div>
-        </Users>
-   <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={this.onFinish}
-      onFinishFailed={this.onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-      </div>
+        </Users> */}
+      </Fragment>
     );
   }
 }
-
 
 export default Home;

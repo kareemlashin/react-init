@@ -1,104 +1,133 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import {Outlet, NavLink} from 'react-router-dom'
+import React, { PureComponent } from "react";
+import { Outlet, NavLink } from "react-router-dom";
 //import { Test } from './Admin.styles';
-
-class Admin extends PureComponent { 
+import "./admin.scss";
+import HeadNav from "./components/HeadNav/HeadNav";
+class Admin extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       hasError: false,
+      openClose: "open",
     };
   }
 
-  componentWillMount = () => {
-    console.log('Admin will mount');
-  }
+  componentWillMount = () => {};
 
-  componentDidMount = () => {
-    console.log('Admin mounted');
-  }
+  componentDidMount = () => {};
 
-  componentWillReceiveProps = (nextProps) => {
-    console.log('Admin will receive props', nextProps);
-  }
+  componentWillReceiveProps = (nextProps) => {};
 
-  componentWillUpdate = (nextProps, nextState) => {
-    console.log('Admin will update', nextProps, nextState);
-  }
+  componentWillUpdate = (nextProps, nextState) => {};
 
-  componentDidUpdate = () => {
-    console.log('Admin did update');
-  }
+  componentDidUpdate = () => {};
 
-  componentWillUnmount = () => {
-    console.log('Admin will unmount');
+  componentWillUnmount = () => {};
+  openClose() {
+    if (this.state.openClose === "open") {
+      this.setState({
+        ...this.state,
+        openClose: "close",
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        openClose: "open",
+      });
+    }
   }
-
-  render () {
+  render() {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
     }
     return (
       <div className="AdminWrapper">
-        Test content
-        <div>
-        <NavLink
-          to="/"
-          className={(isActive) =>
-            "nav-link " + (isActive.isActive ? " unselected" : " selected")
-          }
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="../Home"
-          className={(isActive) =>
-            "nav-link " + (isActive.isActive ? " unselected" : " selected")
-          }
-        >
-          Home Home Home
-        </NavLink>
-        <NavLink
-          to="../Home"
-          className={(isActive) =>
-            "nav-link " + (isActive.isActive ? " unselected" : " selected")
-          }
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="../about"
-          className={(isActive) =>
-            "nav-link " + (isActive.isActive ? " unselected" : " selected")
-          }
-        >
-          about
-        </NavLink>
-        <NavLink
-          to="../Profile"
-          
-          className={(isActive) =>
-            "nav-link " + (isActive.isActive ? " unselected" : " selected")
-          }
-        >
-          Profile
-        </NavLink>
+        <div className="admin-container position-relative">
+          <aside
+            className={`side-nav ${
+              this.state.openClose === "open" ? "open" : "close"
+            }`}
+          >
+            <div>
+              <button
+                className="close__mobile"
+                onClick={() => {
+                  this.openClose();
+                }}
+              >
+                close
+              </button>
+              <NavLink
+                to="/"
+                className={(isActive) =>
+                  "nav-link " +
+                  (isActive.isActive ? " unselected" : " selected")
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="Home"
+                className={(isActive) =>
+                  "nav-link " +
+                  (isActive.isActive ? " unselected" : " selected")
+                }
+              >
+                Home Home Home
+              </NavLink>
+              <NavLink
+                to="sHome"
+                className={(isActive) =>
+                  "nav-link " +
+                  (isActive.isActive ? " unselected" : " selected")
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="about"
+                className={(isActive) =>
+                  "nav-link " +
+                  (isActive.isActive ? " unselected" : " selected")
+                }
+              >
+                about
+              </NavLink>
+              <NavLink
+                to="Profile"
+                className={(isActive) =>
+                  "nav-link " +
+                  (isActive.isActive ? " unselected" : " selected")
+                }
+              >
+                Profile
+              </NavLink>
+            </div>
+          </aside>
+          <div
+            className={`main-admin ${
+              this.state.openClose === "open" ? "open" : "close"
+            }`}
+          >
+            <div className="d-flex">
+              <button
+                onClick={() => {
+                  this.openClose();
+                }}
+              >
+                openClose
+              </button>
+              <HeadNav />
+            </div>
+            <div className="main__content">
+              <Outlet />
+            </div>
+          </div>
         </div>
-        <Outlet />
-
       </div>
     );
   }
 }
-
-Admin.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Admin.defaultProps = {
-  // bla: 'test',
-};
 
 export default Admin;

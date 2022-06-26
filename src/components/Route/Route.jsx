@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-const About =React.lazy(()=>import('../../pages/About/About'));
-const Profile =React.lazy(()=>import('../../pages/Profile/Profile'));
-const User =React.lazy(()=>import('../../layout/User/User'));
+const About = React.lazy(() => import("../../pages/About/About"));
+const Profile = React.lazy(() => import("../../pages/Profile/Profile"));
+const User = React.lazy(() => import("../../layout/User/User"));
 
-const Home =React.lazy(()=>import('../../pages/Home/Home'));
-const Admin =React.lazy(()=>import('../../layout/Admin/Admin'));
-const x = 2;
+const Home = React.lazy(() => import("../../pages/Home/Home"));
+const Admin = React.lazy(() => import("../../layout/Admin/Admin"));
+const token = localStorage.getItem("token");
 
-class RouteMain extends PureComponent { 
+class RouteMain extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -17,41 +17,35 @@ class RouteMain extends PureComponent {
     };
   }
 
-  componentWillMount = () => {
-  }
+  componentWillMount = () => {};
 
-  componentDidMount = () => {
-  }
+  componentDidMount = () => {};
 
-  componentWillReceiveProps = (nextProps) => {
-  }
+  componentWillReceiveProps = (nextProps) => {};
 
-  componentWillUpdate = (nextProps, nextState) => {
-  }
+  componentWillUpdate = (nextProps, nextState) => {};
 
-  componentDidUpdate = () => {
-  }
+  componentDidUpdate = () => {};
 
-  componentWillUnmount = () => {
-  }
+  componentWillUnmount = () => {};
 
-  render () {
+  render() {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
     }
     return (
       <div className="route__wrapper">
-                <BrowserRouter>
+        <BrowserRouter>
           <Routes>
             {(() => {
-              if (x === 1) {
+              if (token) {
                 return (
                   <>
                     <Route path="/Admin" element={<Admin />}>
-                    <Route path="Home" element={<Home />} />
-                    <Route path="about" element={<About />} />
-                    <Route path="Profile" element={<Profile />} />
-                      
+                      <Route path="Home" element={<Home />} />
+                      <Route path="about" element={<About />} />
+                      <Route path="Profile" element={<Profile />} />
+
                       <Route path="" element={<Navigate replace to="Home" />} />
                     </Route>
                     <Route
@@ -68,10 +62,10 @@ class RouteMain extends PureComponent {
                 return (
                   <>
                     <Route path="/Base" element={<User />}>
-                    <Route path="Home" element={<Home />} />
-                    <Route path="about" element={<About />} />
-                    <Route path="Profile" element={<Profile />} />
-                    
+                      <Route path="Home" element={<Home />} />
+                      <Route path="about" element={<About />} />
+                      <Route path="Profile" element={<Profile />} />
+
                       <Route path="" element={<Navigate replace to="Home" />} />
                     </Route>
                     <Route path="/" element={<Navigate replace to="/Base" />} />
@@ -86,7 +80,5 @@ class RouteMain extends PureComponent {
     );
   }
 }
-
-
 
 export default RouteMain;

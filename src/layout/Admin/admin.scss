@@ -1,0 +1,118 @@
+@media (min-width: 1025px) {
+    .admin-container {
+        display: flex;
+    
+        aside {
+            width: 250px;
+            position: fixed;
+            min-height: 100vh;
+            top: 0;
+            z-index: 999 !important;
+            bottom: 0;
+            &.open {
+                inset-inline-start: 0;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+    
+            &.close {
+                inset-inline-start: -250px !important;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+        }
+    
+        .main-admin {
+    
+            min-height: 200vh;
+    
+            &.open {
+                margin-inline-start: 250px;
+                width: calc(100% - 250px);
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+    
+            &.close {
+                margin-inline-start: 0px;
+                width: 100% !important;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+        }
+    }
+    .close__mobile{
+        display: none;
+    }
+}
+
+@media (max-width: 1025px){
+    .close__mobile{
+        display: block;
+        position: absolute;
+    }
+    .admin-container {
+        display: block;
+    
+        aside {
+            width: 250px;
+            position: fixed;
+            min-height: 100vh;
+            top: 0;
+            z-index: 999 !important;
+            bottom: 0;
+            &.open {
+                inset-inline-start: -250px;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+    
+            &.close {
+                inset-inline-start: 0px !important;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+        }
+    
+        .main-admin {
+            width: 100% !important;
+
+            min-height: 200vh;
+    
+            &.open {
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+    
+            &.close {
+                margin-inline-start: 0px;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -ms-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+        }
+    }
+}

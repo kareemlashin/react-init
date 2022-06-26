@@ -1,0 +1,98 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.dark {
+        background-color: #27272A;
+    }
+}
+.navbar__page--wrapper{
+    position: relative;
+
+}
+.toggle {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background-color: #1F2937;
+
+    border-radius: 20px;
+    transition: all 300ms ease-in-out;
+    border: 2px solid #F1F5F9;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+
+    .dark & {
+        border-color: #fff;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        height: 1rem;
+        width: 1rem;
+        background-image: linear-gradient(to top left, #F59E0B, #FEF3C7);
+        border-radius: 50%;
+        transition: all 400ms ease-in-out;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -2.1rem;
+        left: 0;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 45%;
+        background-image: linear-gradient(to left, #7DD3FC, #0EA5E9);
+        animation: wave 15s infinite linear;
+        transition: all 300ms ease-in-out;
+    }
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-checkbox:checked~.toggle {
+    background-color: #FDF5F0;
+}
+
+// .toggle-checkbox:checked~.toggle::before {
+//     background-image: linear-gradient(to left, #64748B, #334155);
+
+//     left: 1.5rem;
+// }
+
+
+
+.toggle-checkbox:checked~.toggle::before {
+    background-image: linear-gradient(to left, #F59E0B, #FEF3C7);
+    left: 1.5rem;
+}
+
+.toggle-checkbox:checked~.toggle::after{
+    bottom: -1.8rem;
+    background-image: linear-gradient(to top left, #D1D5DB, #D1D5DB);
+
+}
+@keyframes wave {
+    from {
+        transform: rotate(0deg);
+    }
+
+    from {
+        transform: rotate(360deg);
+    }
+}
+.toggle{
+    position: absolute;
+    top: 5px;
+    inset-inline-end: 5px;
+}
