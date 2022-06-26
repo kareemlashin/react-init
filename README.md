@@ -8,6 +8,20 @@ react-init
 ├─ package-lock.json
 ├─ package.json
 ├─ public
+│  ├─ favicon.ico
+│  ├─ index.html
+│  ├─ locales
+│  │  ├─ ar
+│  │  │  └─ translation.json
+│  │  └─ en
+│  │     └─ translation.json
+│  ├─ logo192.png
+│  ├─ logo512.png
+│  ├─ manifest.json
+│  └─ robots.txt
+├─ README.md
+├─ src
+│  ├─ App.js
 │  ├─ assets
 │  │  ├─ fonts
 │  │  │  └─ .gitkeep
@@ -21,6 +35,7 @@ react-init
 │  │  │     └─ .gitkeep
 │  │  └─ styles
 │  │     ├─ .gitkeep
+│  │     ├─ App.css
 │  │     ├─ base
 │  │     │  ├─ _base.scss
 │  │     │  ├─ _fonts.scss
@@ -33,6 +48,7 @@ react-init
 │  │     │  └─ _variables.scss
 │  │     ├─ components
 │  │     │  └─ .gitkeep
+│  │     ├─ index.css
 │  │     ├─ index.scss
 │  │     ├─ layout
 │  │     │  └─ .gitkeep
@@ -42,52 +58,53 @@ react-init
 │  │     │  └─ .gitkeep
 │  │     └─ theme
 │  │        └─ .gitkeep
-│  ├─ favicon.ico
-│  ├─ index.html
-│  ├─ locales
-│  │  ├─ ar
-│  │  │  └─ translation.json
-│  │  └─ en
-│  │     └─ translation.json
-│  ├─ logo192.png
-│  ├─ logo512.png
-│  ├─ manifest.json
-│  └─ robots.txt
-├─ README.md
-└─ src
-   ├─ App.css
-   ├─ App.js
-   ├─ App.test.js
-   ├─ components
-   │  └─ .gitkeep
-   ├─ core
-   │  ├─ config
-   │  │  └─ .gitkeep
-   │  └─ helpers
-   │     └─ .gitkeep
-   ├─ environments
-   │  ├─ dev.environment.js
-   │  ├─ prd.environment.js
-   │  └─ stg.environment.js
-   ├─ index.css
-   ├─ index.js
-   ├─ layout
-   │  └─ .gitkeep
-   ├─ modules
-   │  └─ .gitkeep
-   ├─ pages
-   │  └─ .gitkeep
-   ├─ reportWebVitals.js
-   ├─ services
-   │  └─ .gitkeep
-   ├─ setupTests.js
-   └─ store
-      ├─ action
-      │  └─ action.js
-      ├─ reducer
-      │  └─ .gitkeep
-      ├─ state
-      │  └─ state.js
-      └─ store.js
+│  ├─ components
+│  │  ├─ .gitkeep
+│  │  └─ NavbarPage
+│  │     ├─ index.js
+│  │     ├─ NavbarPage.jsx
+│  │     └─ NavbarPage.styles.js
+│  ├─ core
+│  │  ├─ config
+│  │  │  └─ .gitkeep
+│  │  ├─ enums
+│  │  │  └─ .gitkeep
+│  │  ├─ helpers
+│  │  │  └─ .gitkeep
+│  │  ├─ interceptor
+│  │  │  ├─ .gitkeep
+│  │  │  └─ index.js
+│  │  ├─ mocks
+│  │  │  └─ .gitkeep
+│  │  ├─ services
+│  │  │  └─ .gitkeep
+│  │  └─ utils
+│  │     └─ .gitkeep
+│  ├─ environments
+│  │  ├─ dev.environment.js
+│  │  ├─ prd.environment.js
+│  │  └─ stg.environment.js
+│  ├─ i18n.js
+│  ├─ index.js
+│  ├─ layout
+│  │  └─ .gitkeep
+│  ├─ modules
+│  │  └─ .gitkeep
+│  ├─ pages
+│  │  └─ .gitkeep
+│  ├─ reportWebVitals.js
+│  ├─ services
+│  │  └─ .gitkeep
+│  ├─ setupTests.js
+│  └─ store
+│     ├─ action
+│     │  └─ action.js
+│     ├─ reducer
+│     │  └─ .gitkeep
+│     ├─ state
+│     │  └─ state.js
+│     └─ store.js
+└─ test
+   └─ App.test.js
 
 ```
