@@ -17,11 +17,15 @@ class NavbarPage extends PureComponent {
   componentWillMount = () => {};
 
   componentDidMount = () => {
-    if(localStorage.getItem('isDark')){
-      document.getElementsByTagName('body')[0]?.classList?.add('bg-dark');
-    
-    }else{
-   
+    if (localStorage.getItem("isDark")) {
+      document.getElementsByTagName("body")[0]?.classList?.add("bg-dark");
+    }
+    if (localStorage.getItem("lang") === "ar") {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
+      document.getElementsByTagName("html")[0].setAttribute("lang", "ar");
+    } else {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "ltr");
+      document.getElementsByTagName("html")[0].setAttribute("lang", "en");
     }
     i18next.on("languageChanged", (lang) => {
       console.log("languageChanged : languageChanged: ", lang);
@@ -61,15 +65,22 @@ class NavbarPage extends PureComponent {
   componentWillUnmount = () => {};
   changeLanguageHandler = (lang) => {
     i18next.changeLanguage(lang);
+    localStorage.setItem("lang", lang);
+    if (lang === "ar") {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
+      document.getElementsByTagName("html")[0].setAttribute("lang", "ar");
+    } else {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "ltr");
+      document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+    }
   };
-  lightDark($event){
-    if(!localStorage.getItem('isDark')){
-      document.getElementsByTagName('body')[0].classList.add('bg-dark');
-      localStorage.setItem('isDark','isDark');
-    }else{
-      document.getElementsByTagName('body')[0].classList.remove('bg-dark')
-      localStorage.removeItem('isDark');
-
+  lightDark($event) {
+    if (!localStorage.getItem("isDark")) {
+      document.getElementsByTagName("body")[0].classList.add("bg-dark");
+      localStorage.setItem("isDark", "isDark");
+    } else {
+      document.getElementsByTagName("body")[0].classList.remove("bg-dark");
+      localStorage.removeItem("isDark");
     }
   }
   render() {
@@ -80,31 +91,32 @@ class NavbarPage extends PureComponent {
             <input
               type="checkbox"
               id="dark-mode-toggle"
-               defaultChecked={localStorage.getItem('isDark')}
+              defaultChecked={localStorage.getItem("isDark")}
               className="toggle-checkbox"
-              onChange={($event)=>this.lightDark(localStorage.getItem('isDark'))}
+              onChange={($event) =>
+                this.lightDark(localStorage.getItem("isDark"))
+              }
             />
-            <label
-              htmlFor="dark-mode-toggle"
-              className="toggle"
-            ></label>
+            <label htmlFor="dark-mode-toggle" className="toggle"></label>
           </div>
         </div>
         {t("w_name")}
         <br />
-        {
-          (
-              ()=>{
-                if(i18next.language==='ar'){
-                  return (<button onClick={() => this.changeLanguageHandler("en")}>en</button>)
-
-                  }else{
-                    return (<button onClick={() => this.changeLanguageHandler("ar")}>ar</button>)
-                  }
-              }
-          )()
-      }
-     
+        {(() => {
+          if (i18next.language === "ar") {
+            return (
+              <button onClick={() => this.changeLanguageHandler("en")}>
+                en
+              </button>
+            );
+          } else {
+            return (
+              <button onClick={() => this.changeLanguageHandler("ar")}>
+                ar
+              </button>
+            );
+          }
+        })()}
       </div>
     );
   }
