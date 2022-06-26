@@ -1,31 +1,36 @@
 import React, { PureComponent } from "react";
-import  i18next, { t } from "i18next";
-import {withTranslation} from 'react-i18next'
-import i18n from '../../i18n'
-import axios from 'axios'
+import i18next, { t } from "i18next";
+import { withTranslation } from "react-i18next";
+import axios from "axios";
+import "./index.scss";
 
 class NavbarPage extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      hasError: false,
-      lang:localStorage.getItem('lang')||'ar'
+      checked: true,
+      lang: localStorage.getItem("lang") || "ar",
     };
   }
 
-  componentWillMount = () => {
-  };
+  componentWillMount = () => {};
 
   componentDidMount = () => {
-    i18next.on('languageChanged',(lang)=>{
-      console.log('languageChanged : languageChanged: ',lang)
+    if(localStorage.getItem('isDark')){
+      document.getElementsByTagName('body')[0]?.classList?.add('bg-dark');
+    
+    }else{
+   
+    }
+    i18next.on("languageChanged", (lang) => {
+      console.log("languageChanged : languageChanged: ", lang);
       axios
-      .get("https://www.postman.com/collections"+lang)
-      .then((data) => {});
-    })
+        .get("https://www.postman.com/collections/9e1075da1dc1b06025cc")
+        .then((data) => {});
+    });
 
-   /* 
+    /* 
    import axios from "axios";
    
     axios
@@ -57,25 +62,51 @@ class NavbarPage extends PureComponent {
   changeLanguageHandler = (lang) => {
     i18next.changeLanguage(lang);
   };
+  lightDark($event){
+    if(!localStorage.getItem('isDark')){
+      document.getElementsByTagName('body')[0].classList.add('bg-dark');
+      localStorage.setItem('isDark','isDark');
+    }else{
+      document.getElementsByTagName('body')[0].classList.remove('bg-dark')
+      localStorage.removeItem('isDark');
+
+    }
+  }
   render() {
     return (
       <div className="navbar__page--wrapper">
-        {t("w_name")}<br />
-        {i18next.language}<br />
-        <button
-          onClick={() => this.changeLanguageHandler("en")}
-        >
-          en
-        </button><br />
-        <button
-          onClick={() => 
-            this.changeLanguageHandler("ar")
-          }
-        >
-          ar
-        </button>
+        <div>
+          <div className="container">
+            <input
+              type="checkbox"
+              id="dark-mode-toggle"
+               defaultChecked={localStorage.getItem('isDark')}
+              className="toggle-checkbox"
+              onChange={($event)=>this.lightDark(localStorage.getItem('isDark'))}
+            />
+            <label
+              htmlFor="dark-mode-toggle"
+              className="toggle"
+            ></label>
+          </div>
+        </div>
+        {t("w_name")}
+        <br />
+        {
+          (
+              ()=>{
+                if(i18next.language==='ar'){
+                  return (<button onClick={() => this.changeLanguageHandler("en")}>en</button>)
+
+                  }else{
+                    return (<button onClick={() => this.changeLanguageHandler("ar")}>ar</button>)
+                  }
+              }
+          )()
+      }
+     
       </div>
     );
   }
 }
-export default  withTranslation()(NavbarPage);
+export default withTranslation()(NavbarPage);
