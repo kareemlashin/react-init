@@ -6,7 +6,7 @@ const User = React.lazy(() => import("../../layout/User/User"));
 
 const Home = React.lazy(() => import("../../pages/Home/Home"));
 const Admin = React.lazy(() => import("../../layout/Admin/Admin"));
-const token = localStorage.getItem("token");
+const token = !localStorage.getItem("token");
 
 class RouteMain extends PureComponent {
   constructor(props) {

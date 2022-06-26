@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {Outlet, NavLink} from 'react-router-dom'
+import i18next from 'i18next';
 //import { Test } from './User.styles';
 
 class User extends PureComponent { 
@@ -9,6 +10,8 @@ class User extends PureComponent {
 
     this.state = {
       hasError: false,
+      lang: localStorage.getItem("lang") || "ar",
+
     };
   }
 
@@ -17,7 +20,25 @@ class User extends PureComponent {
   }
 
   componentDidMount = () => {
-    console.log('User mounted');
+    if (localStorage.getItem("isDark")) {
+      document.getElementsByTagName("body")[0]?.classList?.add("bg-dark");
+    }
+    if (localStorage.getItem("lang") === "ar") {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
+      document.getElementsByTagName("body")[0].setAttribute("dir", "rtl");
+      this.setState({
+        ...this.state,
+        dir: "rtl",
+      });
+    } else {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "ltr");
+      document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+      document.getElementsByTagName("body")[0].setAttribute("dir", "ltr");
+      this.setState({
+        ...this.state,
+        dir: "ltr",
+      });
+    }
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -35,7 +56,18 @@ class User extends PureComponent {
   componentWillUnmount = () => {
     console.log('User will unmount');
   }
-
+  changeLanguageHandler = (lang) => {
+    i18next.changeLanguage(lang);
+    localStorage.setItem("lang", lang);
+    if (localStorage.getItem("lang") === "ar") {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
+      document.getElementsByTagName("body")[0].setAttribute("dir", "rtl");
+    } else {
+      document.getElementsByTagName("html")[0].setAttribute("dir", "ltr");
+      document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+      document.getElementsByTagName("body")[0].setAttribute("dir", "ltr");
+    }
+  };
   render () {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
@@ -43,6 +75,21 @@ class User extends PureComponent {
     return (
       <div className="UserWrapper">
         Test content
+        {(() => {
+          if (this.state.lang === "ar") {
+            return (
+              <button onClick={() => this.changeLanguageHandler("en")}>
+                en
+              </button>
+            );
+          } else {
+            return (
+              <button onClick={() => this.changeLanguageHandler("ar")}>
+                ar
+              </button>
+            );
+          }
+        })()}
         <div>
         <NavLink
           to="/"
