@@ -6,7 +6,7 @@ const User = React.lazy(() => import("../../layout/User/User"));
 
 const Home = React.lazy(() => import("../../pages/Home/Home"));
 const Admin = React.lazy(() => import("../../layout/Admin/Admin"));
-const token = !localStorage.getItem("token");
+let token = localStorage.getItem("token");
 
 class RouteMain extends PureComponent {
   constructor(props) {
@@ -19,7 +19,20 @@ class RouteMain extends PureComponent {
 
   componentWillMount = () => {};
 
-  componentDidMount = () => {};
+  componentDidMount = () => {
+    window.addEventListener("storage", () => {
+      token = localStorage.getItem("token");
+      this.setState({
+        hasError: true,
+      });
+      setTimeout(() => {
+        // code
+        this.setState({
+          hasError: false,
+        });
+      }, 1);
+    });
+  };
 
   componentWillReceiveProps = (nextProps) => {};
 
@@ -65,7 +78,6 @@ class RouteMain extends PureComponent {
                       <Route path="Home" element={<Home />} />
                       <Route path="about" element={<About />} />
                       <Route path="Profile" element={<Profile />} />
-
                       <Route path="" element={<Navigate replace to="Home" />} />
                     </Route>
                     <Route path="/" element={<Navigate replace to="/Base" />} />

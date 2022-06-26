@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {Outlet, NavLink} from 'react-router-dom'
+import {Outlet, NavLink, Navigate, Route, } from 'react-router-dom'
 import i18next from 'i18next';
 //import { Test } from './User.styles';
+import { useNavigate } from "react-router-dom";
 
 class User extends PureComponent { 
   constructor(props) {
@@ -68,6 +69,13 @@ class User extends PureComponent {
       document.getElementsByTagName("body")[0].setAttribute("dir", "ltr");
     }
   };
+  token=()=>{
+    localStorage.setItem('token','setItem');
+    window.dispatchEvent(new Event("storage"));
+
+   return  <Navigate to="/" replace={true} />
+
+  }
   render () {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
@@ -75,6 +83,11 @@ class User extends PureComponent {
     return (
       <div className="UserWrapper">
         Test content
+        <button onClick={()=>{
+          this.token()
+        }}>
+        token
+        </button>
         {(() => {
           if (this.state.lang === "ar") {
             return (

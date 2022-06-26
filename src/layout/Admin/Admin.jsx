@@ -1,8 +1,9 @@
 import React, { PureComponent } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink , Redirect, Navigate} from "react-router-dom";
 //import { Test } from './Admin.styles';
 import "./admin.scss";
 import HeadNav from "./components/HeadNav/HeadNav";
+import Route from '../../components/Route/index'
 class Admin extends PureComponent {
   constructor(props) {
     super(props);
@@ -37,10 +38,18 @@ class Admin extends PureComponent {
       });
     }
   }
+  token=()=>{
+    localStorage.removeItem('token');
+    window.dispatchEvent(new Event("storage"));
+
+    return  <Navigate to="/" replace={true} />
+
+  }
   render() {
     
     return (
       <div className="AdminWrapper">
+      
         <div className="admin-container position-relative">
           <aside
             className={`side-nav ${
@@ -119,6 +128,19 @@ class Admin extends PureComponent {
               <HeadNav />
             </div>
             <div className="main__content">
+            <button onClick={()=>{
+          this.token()
+        }}>
+        token
+        </button>
+        <NavLink
+          to="../"
+          className={(isActive) =>
+            "nav-link " + (isActive.isActive ? " unselected" : " selected")
+          }
+        >
+          Home
+        </NavLink>
               <Outlet />
             </div>
           </div>
