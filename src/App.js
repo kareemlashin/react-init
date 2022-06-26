@@ -1,14 +1,17 @@
-import NavbarPage from "./components/NavbarPage/NavbarPage";
+import  { Suspense} from "react";
+import Main from "./layout/Main/Main";
 import "./core/interceptor/index";
 import "./assets/styles/index.scss";
-
-import { Suspense } from "react";
+import './index.scss'
 import "./i18n";
+// to change dir
+
+
 function App() {
   return (
     <Suspense >
       <div className="app">
-        <NavbarPage></NavbarPage>
+        <Main></Main>
       </div>
     </Suspense>
   );

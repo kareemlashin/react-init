@@ -1,0 +1,14 @@
+
+@import '../node_modules/rsuite/dist/rsuite';
+@import '../node_modules/rsuite/dist/rsuite-rtl';
+@import '../node_modules/bootstrap/dist/css/bootstrap';
+@import '../node_modules/antd/dist/antd';
+[dir="rtl"]{
+    body,html{
+        direction: rtl;
+        text-align: right;
+    }
+}
+html.rtl {
+    direction: rtl;
+}
